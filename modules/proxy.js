@@ -36,10 +36,12 @@ function get (req, res, next) {
     }
 
     // require Origin header
-    if (!requireHeader.some(header => req.headers[header])) {
-        res.statusCode = 403;
-        return res.end('Origin: header is required');
-    }
+    // Vookimedlo: commented-out because Android phone does not request the Origina headers.
+    //             Headers will be used when the stream is switched to the chromecast.
+    //if (!requireHeader.some(header => req.headers[header])) {
+    //    res.statusCode = 403;
+    //    return res.end('Origin: header is required');
+    //}
 
     // TODO redirect same origin
     /* from cors-anywhere: boolean redirectSameOrigin - If true, requests to
