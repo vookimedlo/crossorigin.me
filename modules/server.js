@@ -16,9 +16,10 @@ server.use(function (req, res, next) {
     }
 });
 
+// Vookimedlo: Useless in my home environment, just set the 0 values to get unlimited settings
 const freeTier = restify.throttle({
-    rate: 3,
-    burst: 10,
+    rate: 0,       //3,
+    burst: 0,     //10,
     xff: true,
     overrides: {
         '192.168.1.1': {

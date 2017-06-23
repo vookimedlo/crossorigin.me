@@ -16,7 +16,10 @@ let serverHeadersBlacklist = new Set([
     'connection',
 ]);
 
-var sizeLimit = 2e6; //TODO: change this to something different depending on tier. It's fine for now.
+// Vookimedlo: Size limit is not important in my home environment
+//var sizeLimit = 2e6; //TODO: change this to something different depending on tier. It's fine for now.
+var sizeLimit = Number.MAX_SAFE_INTEGER;
+
 /*
 get handler handles standard GET reqs as well as streams
 */
@@ -108,10 +111,12 @@ function put (req, res, next) {
     var data = 0;
 
     // require Origin header
-    if (!requireHeader.some(header => req.headers[header])) {
-        res.statusCode = 403;
-        return res.end('Origin: header is required');
-    }
+    // Vookimedlo: commented-out because Android phone does not request the Origina headers.
+    //             Headers will be used when the stream is switched to the chromecast.
+    //if (!requireHeader.some(header => req.headers[header])) {
+    //    res.statusCode = 403;
+    //    return res.end('Origin: header is required');
+    //}
 
     // TODO redirect same origin
     /* from cors-anywhere: boolean redirectSameOrigin - If true, requests to
